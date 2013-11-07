@@ -82,6 +82,7 @@ class AvatarImageProviderSpec extends Specification {
     SystemSettings(
       baseUrl                  = None,
       allowAccountRegistration = false,
+      allowGroupRegistration   = false,
       gravatar                 = useGravatar,
       notification             = false,
       smtp                     = None,

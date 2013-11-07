@@ -14,6 +14,7 @@ trait SystemSettingsControllerBase extends ControllerBase {
   private val form = mapping(
     "baseUrl"                  -> trim(label("Base URL", optional(text()))),
     "allowAccountRegistration" -> trim(label("Account registration", boolean())),
+    "allowGroupRegistration"   -> trim(label("Allow User create group", boolean())),
     "gravatar"                 -> trim(label("Gravatar", boolean())),
     "notification"             -> trim(label("Notification", boolean())),
     "smtp"                     -> optionalIfNotChecked("notification", mapping(
@@ -50,5 +51,4 @@ trait SystemSettingsControllerBase extends ControllerBase {
     flash += "info" -> "System settings has been updated."
     redirect("/admin/system")
   })
-
 }

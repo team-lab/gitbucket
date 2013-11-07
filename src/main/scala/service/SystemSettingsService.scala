@@ -17,6 +17,7 @@ trait SystemSettingsService {
     defining(new java.util.Properties()){ props =>
       settings.baseUrl.foreach(props.setProperty(BaseURL, _))
       props.setProperty(AllowAccountRegistration, settings.allowAccountRegistration.toString)
+      props.setProperty(AllowGroupRegistration, settings.allowGroupRegistration.toString)
       props.setProperty(Gravatar, settings.gravatar.toString)
       props.setProperty(Notification, settings.notification.toString)
       if(settings.notification) {
@@ -58,6 +59,7 @@ trait SystemSettingsService {
       SystemSettings(
         getOptionValue(props, BaseURL, None),
         getValue(props, AllowAccountRegistration, false),
+        getValue(props, AllowGroupRegistration, false),
         getValue(props, Gravatar, true),
         getValue(props, Notification, false),
         if(getValue(props, Notification, false)){
@@ -100,6 +102,7 @@ object SystemSettingsService {
   case class SystemSettings(
     baseUrl: Option[String],
     allowAccountRegistration: Boolean,
+    allowGroupRegistration: Boolean,
     gravatar: Boolean,
     notification: Boolean,
     smtp: Option[Smtp],
@@ -132,6 +135,7 @@ object SystemSettingsService {
 
   private val BaseURL = "base_url"
   private val AllowAccountRegistration = "allow_account_registration"
+  private val AllowGroupRegistration = "allow_group_registration"
   private val Gravatar = "gravatar"
   private val Notification = "notification"
   private val SmtpHost = "smtp.host"
