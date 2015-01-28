@@ -151,6 +151,14 @@ trait AccountControllerBase extends AccountManagementControllerBase {
     }
   }
 
+  get("/api/v3/user") {
+    context.loginAccount.map { account =>
+      "you="+account
+    } getOrElse {
+      "not authorized"
+    }
+  }
+
   get("/:userName/_edit")(oneselfOnly {
     val userName = params("userName")
     getAccountByUserName(userName).map { x =>
